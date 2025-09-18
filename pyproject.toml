@@ -1,7 +1,7 @@
 [project]
-name = "dofus-mcp"
+name = "league-of-legends-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "Model Context Protocol server for League of Legends champion information"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
