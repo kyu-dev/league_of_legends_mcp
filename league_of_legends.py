@@ -25,8 +25,8 @@ async def make_dd_request(url: str) -> dict[str, Any] | None:
             return None
 
 @mcp.tool()
-async def get_champion_stats(champion: str) -> str:
-    """Get stats, skins, and lore for a League of Legends champion by name.
+async def get_champion_infos(champion: str) -> str:
+    """Get stats, skins, and lore and more for a League of Legends champion by name.
 
     Args:
         champion: Name of the champion (e.g., Aatrox, Jinx, Yasuo)
@@ -44,6 +44,7 @@ async def get_champion_stats(champion: str) -> str:
     tags = champ_data.get("tags", [])
     lore = champ_data.get("lore", "")
     skins = champ_data.get("skins", [])
+    image = champ_data.get("image", {})
 
     # Format skins information
     skins_info = []
@@ -58,6 +59,8 @@ async def get_champion_stats(champion: str) -> str:
     return f"""
 **{champion}** - {title}
 **Tags:** {', '.join(tags)}
+
+{image}
 
 **Lore:**
 {lore}
