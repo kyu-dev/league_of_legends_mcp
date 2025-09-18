@@ -56,11 +56,18 @@ async def get_champion_infos(champion: str) -> str:
     
     skins_text = '\n'.join(skins_info) if skins_info else "  - No alternative skins available"
 
+    # Format image information
+    image_info = ""
+    if image:
+        image_full = image.get('full', '')
+        if image_full:
+            # Construct the full URL for the champion image
+            image_url = f"https://ddragon.leagueoflegends.com/cdn/15.18.1/img/champion/{image_full}"
+            image_info = f"\n**Image:**\n- Full: {image_url}\n- Sprite: {image.get('sprite', 'N/A')}\n- Position: x={image.get('x', 'N/A')}, y={image.get('y', 'N/A')}\n- Size: {image.get('w', 'N/A')}x{image.get('h', 'N/A')}"
+
     return f"""
 **{champion}** - {title}
-**Tags:** {', '.join(tags)}
-
-{image}
+**Tags:** {', '.join(tags)}{image_info}
 
 **Lore:**
 {lore}
